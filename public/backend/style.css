@@ -1,3 +1,6 @@
 .layout-navbar-fixed.layout-fixed .wrapper .sidebar{
     margin-top: 0!important;
 }
+a{
+    text-decoration: none!important;
+}

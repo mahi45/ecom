@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('admin_content')
+
 <div class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->

@@ -5,14 +5,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{route('logout')}}" class="nav-link" 
-          onclick="
-            event.preventDefault();
-            document.getElementById('logout-form').submit();
-        ">{{__('Logout')}}</a>
-        <form action="{{route('logout')}}" method='POST' id='logout-form'>
-          @csrf
-        </form>
+        <a href="{{route('admin.logout')}}" id="logout" class="nav-link">{{__('Logout')}}</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Home</a>
