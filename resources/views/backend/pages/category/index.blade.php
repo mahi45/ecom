@@ -2,29 +2,57 @@
 
 @section('title', 'Category');
 
+@push('admin_style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+    <style>
+        .dataTables_length {
+            padding: 20px 0;
+        }
+    </style>
+@endpush
+
+
 @section('admin_content')
-    <h2>Category List Table</h2>
     <div class="row">
+        <h1>Category List Table</h1>
+        <div class="col-12">
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('category.create') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> Add
+                    New Category</a>
+            </div>
+        </div>
         <div class="col-12">
             <div class="table-responsive my-2">
-                <table class="table table-striped table-bordered">
-                    <thead class="bg-dark">
+                <table class="table table-striped" id="dataTable">
+                    <thead>
                         <tr>
-                            <th scope="col" class="text-white">#</th>
-                            <th scope="col" class="text-white">Last Modified</th>
-                            <th scope="col" class="text-white">Category Name</th>
-                            <th scope="col" class="text-white">Category Slug</th>
-                            <th scope="col" class="text-white">Action</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Last Modified</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Category Slug</th>
+                            <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
                             <tr>
-                                <td>{{ $categories->firstItem() + $loop->index }}</td>
-                                <td>{{ $category->updated_at->format('d-m-Y') }}</td>
+                                <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
+                                <td>{{ $category->updated_at->format('d-M-Y') }}</td>
                                 <td>{{ $category->title }}</td>
                                 <td>{{ $category->slug }}</td>
-                                <td>Edit || Delete</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                            aria-expanded="false">Settings</button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="dropdown-item"><i
+                                                        class="fa-regular fa-pen-to-square"></i> Edit</a> </li>
+                                            <li><a href="#" class="dropdown-item"><i class="fa-solid fa-trash"></i>
+                                                    Delete</a> </li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -33,3 +61,16 @@
         </div>
     </div>
 @endsection
+
+@push('admin_script')
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                pagingType: 'first_last_numbers',
+            });
+        });
+    </script>
+@endpush
