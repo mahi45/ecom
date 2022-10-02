@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest('id')->select(['id', 'title', 'slug', 'updated_at'])->paginate();
+        $categories = Category::latest('id')->select(['id', 'title', 'slug','is_active', 'updated_at'])->paginate();
 
         // return $categories;
         return view('backend.pages.category.index', compact('categories'));
@@ -49,9 +50,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->title)
         ]);
 
-        // Toastr::success('Data Stored Successfully');
-        Toastr::success('Data Stored Successfully', 'Category', ['options']);
-        // Toastr::success('Data Stored Successfully', 'Category', ["positionClass" => "toast-top-center"]);
+        Toastr::success('Category Stored Successfully');
 
         return redirect()->route('category.index');
     }
@@ -73,9 +72,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $edit_cat = Category::whereSlug($slug)->first();
+        return view('backend.pages.category.edit', compact('edit_cat'));
     }
 
     /**
@@ -85,9 +85,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $slug)
     {
-        //
+        $update_cat = Category::whereSlug($slug)->first();
+        $update_cat->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'is_active' => $request->filled('is_active')
+        ]);
+
+        Toastr::success('Category Updated Successfully');
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -96,8 +105,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $category = Category::whereSlug($slug)->first()->delete();
+        Toastr::success('Category Deleted Successfully');
+        return redirect()->route('category.index');
     }
 }
