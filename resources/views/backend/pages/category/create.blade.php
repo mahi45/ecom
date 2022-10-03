@@ -7,7 +7,7 @@
         <div class="col-12 d-flex justify-content-between mb-4">
             <h1>Create Category</h1>
 
-            <a href="{{ route('category.index') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i>
+            <a href="{{ route('category.index') }}" class="btn btn-primary"><i class="fa-sharp fa-solid fa-arrow-left"></i>
                 Back to Category List</a>
         </div>
         <div class="col-12">
