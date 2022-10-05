@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\TestimonialController;
+use App\Http\Controllers\frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,10 @@ use App\Http\Controllers\backend\TestimonialController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.pages.home');
-});
 
+Route::prefix('')->group(function(){
+    Route::get('/', [HomeController::class, 'home'])->name('home');
+});
 
 /* Admin Auth Routes */
 Route::prefix('admin/')->group(function(){

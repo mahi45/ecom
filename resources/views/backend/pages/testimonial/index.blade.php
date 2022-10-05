@@ -45,7 +45,11 @@
                             <tr>
                                 <td scope="row">{{ $testimonials->firstItem() + $loop->index }}</td>
                                 <td>{{ $testimonial->updated_at->format('d-M-Y') }}</td>
-                                <td>{{ $testimonial->client_image }}</td>
+                                <td>
+                                    <img src="{{ asset('uploads/testimonials') }}/{{ $testimonial->client_image }}"
+                                        alt="Default-Client.jpg" class="img-fluid rounded-circle"
+                                        style="width:50px; height: 50px">
+                                </td>
                                 <td>{{ $testimonial->client_name }}</td>
                                 <td>{{ $testimonial->client_designation }}</td>
                                 <td>
