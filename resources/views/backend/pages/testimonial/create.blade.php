@@ -43,9 +43,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="client_message" class="form-label">Client Message</label>
-                            <textarea class="form-control @error('client_designation') is-invalid @enderror" name="client_message"
-                                id="client_message" cols="30" rows="10" placeholder="Enter Client Message"></textarea>
-                            @error('client_designation')
+                            <textarea class="form-control @error('client_message') is-invalid @enderror" name="client_message" id="client_message"
+                                cols="30" rows="10" placeholder="Enter Client Message"></textarea>
+                            @error('client_message')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
