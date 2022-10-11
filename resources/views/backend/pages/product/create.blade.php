@@ -131,6 +131,10 @@
                                 data-max-file-size="1M" data-errors-position="outside"
                                 data-allowed-file-extensions="jpg png jpeg">
                         </div>
+                        <div class="mb-3">
+                            <label for="product_multiple_image" class="form-label">Product Multiple Image</label>
+                            <input type="file" class="form-control" multiple name="product_multiple_image[]">
+                        </div>
                         <div class="mb-3 form-switch">
                             <input type="checkbox" class="form-check-input @error('active') is-invalid @enderror"
                                 name="is_active" role="switch" id="activeStatus" checked>

@@ -138,6 +138,10 @@
                                 style="width: 100%; height: 100%;object-fit: cover;">
 
                         </div>
+                        <div class="mb-3">
+                            <label for="product_multiple_image" class="form-label">Product Multiple Image</label>
+                            <input type="file" class="form-control" multiple name="product_multiple_image[]">
+                        </div>
                         <div class="mb-3 form-switch">
                             <input type="checkbox" class="form-check-input @error('active') is-invalid @enderror"
                                 name="is_active" role="switch" id="activeStatus" checked>
