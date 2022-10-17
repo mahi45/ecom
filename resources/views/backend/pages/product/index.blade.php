@@ -48,7 +48,7 @@
                                 <td scope="row">{{ $products->firstItem() + $loop->index }}</td>
                                 <td>
                                     <img src="{{ asset('uploads/products') }}/{{ $product->product_image }}" alt=""
-                                        class="img-fluid h-20 w-20 rounded">
+                                        class="img-fluid w-20 h-20 rounded">
                                 </td>
                                 <td>{{ $product->updated_at->format('d-M-Y') }}</td>
                                 <td>{{ $product->category->title }}</td>
