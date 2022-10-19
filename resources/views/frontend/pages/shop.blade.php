@@ -38,7 +38,9 @@
                                                 <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                         href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                                 <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                                <li><a
+                                                        href="{{ route('productdetails.page', ['product_slug' => $product->slug]) }}"><i
+                                                            class="fa fa-shopping-bag"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -76,7 +78,9 @@
                                                     <li><a data-toggle="modal" data-target="#exampleModalCenter"
                                                             href="javascript:void(0);"><i class="fa fa-eye"></i></a></li>
                                                     <li><a href="wishlist.html"><i class="fa fa-heart"></i></a></li>
-                                                    <li><a href="cart.html"><i class="fa fa-shopping-bag"></i></a></li>
+                                                    <li><a
+                                                            href="{{ route('productdetails.page', ['product_slug' => $cproduct->slug]) }}"><i
+                                                                class="fa fa-shopping-bag"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -141,7 +145,8 @@
                             <li class="quantity cart-plus-minus">
                                 <input type="text" value="1" />
                             </li>
-                            <li><a href="cart.html">Add to Cart</a></li>
+                            <li><a href="{{ route('productdetails.page', ['product_slug' => $product->slug]) }}">Add to
+                                    Cart</a></li>
                         </ul>
                         <ul class="cetagory">
                             <li>Categories:</li>

@@ -8,6 +8,7 @@ use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\TestimonialController;
+use App\Http\Controllers\frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::prefix('')->group(function(){
     Route::get('/', [HomeController::class, 'home'])->name('home');
     Route::get('/shop', [HomeController::class, 'shopPage'])->name('shop.page');
     Route::get('/single-product/{product_slug}', [HomeController::class, 'productDetails'])->name('productdetails.page');
+    Route::get('/shopping-cart', [CartController::class, 'cartPage'])->name('cart.page');
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addTo-cart');
 });
 
 /* Admin Auth Routes */
