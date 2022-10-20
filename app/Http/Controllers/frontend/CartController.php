@@ -12,6 +12,7 @@ class CartController extends Controller
 {
     public function cartPage(){
         $carts = Cart::content();
+        // return $carts;
         $total_price = Cart::subtotal();
         return view('frontend.pages.shopping-cart', compact('carts', 'total_price'));
     }
@@ -35,7 +36,13 @@ class CartController extends Controller
             ]
         ]);
 
-        Toastr::success('Procut add to cart successfully');
+        Toastr::success('Product added to cart successfully');
         return redirect()->back();
+    }
+
+    public function removeFromCart($cart_id){
+        Cart::remove($cart_id);
+        Toastr::info('Product removed from cart');
+        return back();
     }
 }

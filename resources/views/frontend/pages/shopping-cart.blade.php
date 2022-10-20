@@ -29,14 +29,19 @@
                                                 src="{{ asset('uploads/products') }}/{{ $cartitem->options->product_image }}"
                                                 alt=""></td>
                                         <td class="product"><a href="single-product.html">{{ $cartitem->name }}</a></td>
-                                        <td class="ptice">${{ $cartitem->price }}</td>
+                                        <td class="price">${{ $cartitem->price }}</td>
                                         <td class="quantity cart-plus-minus">
-                                            <input type="text" value="{{ $cartitem->qty }}">
+                                            <input type="number" value="{{ $cartitem->qty }}">
                                             <div class="dec qtybutton">-</div>
                                             <div class="inc qtybutton">+</div>
                                         </td>
                                         <td class="total">${{ $cartitem->price * $cartitem->qty }}</td>
-                                        <td class="remove"><i class="fa fa-times"></i></td>
+                                        <td class="remove">
+                                            <a href="{{ route('removefrom.cart', ['cart_id' => $cartitem->rowId]) }}">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

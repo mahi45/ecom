@@ -129,10 +129,22 @@
                             </a>
                         </li>
                         <li>
-                            <a href="Discount.html">
+                            <a href="#coupons" data-href="{{ route('coupon.index') }}">
                                 <i data-cs-icon="tag" class="icon" data-cs-size="18"></i>
-                                <span class="label">Discount</span>
+                                <span class="label">Coupon Discount</span>
                             </a>
+                            <ul id="coupons">
+                                <li>
+                                    <a href="{{ route('coupon.index') }}">
+                                        <span class="label">List</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('coupon.create') }}">
+                                        <span class="label">Add new</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="Settings.html">
