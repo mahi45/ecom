@@ -75,6 +75,6 @@ class RegisterController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->back();
+        return redirect()->route('login.page');
     }
 }
