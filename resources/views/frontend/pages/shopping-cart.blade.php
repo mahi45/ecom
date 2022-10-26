@@ -80,10 +80,11 @@
                                 <ul>
                                     @if (Session::has('coupon'))
                                         <li><span class="pull-left">Discount Amount:
-                                            </span>৳{{ Session::get('coupon')['discount_amount'] }}</li>
+                                            </span>৳ {{ Session::get('coupon')['discount_amount'] }}</li>
                                         <li><span class="pull-left"> Total: </span>৳
                                             {{ Session::get('coupon')['balance'] }} <del class="text-danger">৳
-                                                {{ Session::get('coupon')['cart_total'] }}</del></li>
+                                                {{ Session::get('coupon')['cart_total'] }}</del>
+                                        </li>
                                     @else
                                         <li><span class="pull-left">Subtotal: </span>৳{{ $total_price }}</li>
                                         <li><span class="pull-left"> Total: </span> ৳{{ $total_price }}</li>

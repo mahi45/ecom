@@ -11,13 +11,14 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+//Use Cart;
 
 class CartController extends Controller
 {
     public function cartPage(){
         $carts = Cart::content();
         // return $carts;
-        $total_price = Cart::subtotal();
+        $total_price = Cart::priceTotal();
         return view('frontend.pages.shopping-cart', compact('carts', 'total_price'));
     }
 
@@ -58,7 +59,7 @@ class CartController extends Controller
 
         // validity check
         $check = Coupon::where('coupon_name', $request->coupon_name)->first();
-
+        //dd($check);
         if(Session::get('coupon')){
             Toastr::error('Coupon Already Applied', 'Info!!');
             return redirect()->back();
@@ -69,14 +70,14 @@ class CartController extends Controller
                 if($check_validity){
                     Session::put('coupon', [
                         'name' => $check->coupon_name,
-                        'discount_amount' => round((Cart::subtotal() * $check->discount_amount)/100),
-                        'cart_total' => Cart::subtotal(),
-                        'balance' => round(Cart::subtotal() - (Cart::subtotal() * $check->discount_amount)/100)
+                        'discount_amount' => round((Cart::subtotalFloat() * $check->discount_amount)/100),
+                        'cart_total' => Cart::subtotalFloat(),
+                        'balance' => round(Cart::subtotalFloat() - (Cart::subtotalFloat() * $check->discount_amount)/100)
                     ]);
                     Toastr::success('Coupon Percentage Applied!!', 'Successfully!!');
                     return redirect()->back();
                 }else{
-                    Toastr::error('Coupon Date Expire!!!', 'Info!!!');
+                    Toastr::error('Coupon Date Expired!!!', 'Info!!!');
                     return redirect()->back();
                 }
         }else{
