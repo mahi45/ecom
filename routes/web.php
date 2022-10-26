@@ -41,6 +41,9 @@ Route::prefix('')->group(function(){
     Route::post('/login', [RegisterController::class, 'loginStore'])->name('login.store');
 });
 
+// Load upazila ajax
+Route::get('/upazila/ajax/{district_id}', [CheckoutController::class, 'loadUpazilaAjax'])->name('loadupazila.ajax');
+
 Route::prefix('customer/')->middleware(['auth', 'is_customer'])->group(function(){
     Route::get('dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
     Route::get('logout', [RegisterController::class, 'logout'])->name('customer.logout');
@@ -52,6 +55,7 @@ Route::prefix('customer/')->middleware(['auth', 'is_customer'])->group(function(
     // Checkout Page
 
     Route::get('checkout', [CheckoutController::class, 'checkoutPage'])->name('customer.checkoutpage');
+    Route::post('placeorder', [CheckoutController::class, 'placeOrder'])->name('customer.placeorder');
 });
 
 /* Admin Auth Routes */

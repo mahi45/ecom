@@ -94,7 +94,7 @@
                                     <li><span class="pull-left">Subtotal </span>${{ $total_price }}</li>
                                     <li><span class="pull-left"> Total </span> ${{ $total_price }}</li>
                                 </ul> --}}
-                                <a href="checkout.html">Proceed to Checkout</a>
+                                <a href="{{ route('customer.checkoutpage') }}">Proceed to Checkout</a>
                             </div>
                         </div>
                     </div>
