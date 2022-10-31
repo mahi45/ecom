@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Order');
 
 @push('admin_style')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
@@ -17,103 +17,13 @@
     </style>
 @endpush
 
+
 @section('admin_content')
     <div class="row">
-        <h3>Admin Dashboard</h3>
-        <h2 class="small-title">Analytics Report</h2>
-    </div>
-    <!-- Stats Start -->
-    <div class="row">
-        <div class="col-12">
-            <div class="mb-5">
-                <div class="row g-2">
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="dollar" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">EARNINGS
-                                </div>
-                                <div class="text-primary cta-4">৳ {{ $total_earning }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="basket" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">ORDERS
-                                </div>
-                                <div class="text-primary cta-4">{{ $total_order }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="server" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">CATEGORY
-                                </div>
-                                <div class="text-primary cta-4">{{ $total_category }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="arrow-top-left" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">PRODUCT
-                                </div>
-                                <div class="text-primary cta-4">{{ $total_product }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="user" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">USERS
-                                </div>
-                                <div class="text-primary cta-4">{{ $total_customer }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-2">
-                        <div class="card h-100 hover-scale-up cursor-pointer">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <div
-                                    class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
-                                    <i data-cs-icon="message" class="text-primary"></i>
-                                </div>
-                                <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">COMMENTS
-                                </div>
-                                <div class="text-primary cta-4">5</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="col-12 my-4 d-flex justify-content-between">
+            <h2>Order List Table</h2>
         </div>
-    </div>
-    <!-- Stats End -->
-    <!--Order table start-->
-    <div class="row">
-        <div class="col-8">
-            <h2>Orders List</h2>
+        <div class="col-12">
             <div class="table-responsive my-2">
                 <table class="table table-striped table-bordered" id="dataTable">
                     <thead>
@@ -193,18 +103,13 @@
                 </table>
             </div>
         </div>
-        <div class="col-4">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
     </div>
-    <!--Order table end-->
 @endsection
 
 @push('admin_script')
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -234,37 +139,6 @@
                     }
                 })
             })
-        });
-    </script>
-    <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['2020', '2021', '2022'],
-                datasets: [{
-                    label: '# of Orders',
-                    data: <?php echo json_encode($orders_yearwise); ?>,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
         });
     </script>
 @endpush

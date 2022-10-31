@@ -9,9 +9,11 @@ use App\Models\Upazila;
 use App\Models\District;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use App\Mail\PurchaseConfirm;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\OrderStoreRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -71,6 +73,12 @@ class CheckoutController extends Controller
         // Force delete from cart table
         Cart::destroy();
         Session::forget('coupon');
+
+        // Now get order with details info to send email
+        $order = Order::whereId($order->id)->with(['billing', 'orderdetails'])->get();
+
+        // Now send mail
+        Mail::to($request->email)->send(new PurchaseConfirm($order));
 
         Toastr::success('Your order placed successfully', 'Success');
         return redirect()->route('cart.page');
